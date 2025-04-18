@@ -1,0 +1,59 @@
+<div
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg p-6 w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4">Add Student</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label>Username</label>
+        <input
+          formControlName="username"
+          class="w-full border rounded px-3 py-2"
+        />
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="w-full border rounded px-3 py-2"
+        />
+      </div>
+      <div>
+        <label>Section</label>
+        <select
+          formControlName="section"
+          class="w-full border rounded px-3 py-2"
+        >
+          <option value="11001">11001</option>
+          <option value="11002">11002</option>
+          <option value="11003">11003</option>
+          <option value="11004">11004</option>
+          <option value="11005">11005</option>
+          <option value="11006">11006</option>
+          <option value="11007">11007</option>
+          <option value="11008">11008</option>
+          <option value="11009">11009</option>
+          <option value="11010">11010</option>
+          <option value="11011">11011</option>
+          <option value="11012">11012</option>
+        </select>
+      </div>
+      <div class="flex justify-end space-x-2">
+        <button
+          type="button"
+          (click)="cancel()"
+          class="cursor-pointer px-4 py-2 bg-gray-300 rounded"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

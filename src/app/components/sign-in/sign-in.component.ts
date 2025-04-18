@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
 })
@@ -32,11 +35,8 @@ export class SignInComponent {
     if (this.form.valid) {
       console.log('Form Submitted!', this.form.value);
       let apiUrl = 'http://localhost:5085/api/signin';
-      let payload = {
-        username: this.form.value.username,
-        password: this.form.value.password,
-      };
-      let options = {
+      let payload = this.form.value;
+        let options = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),

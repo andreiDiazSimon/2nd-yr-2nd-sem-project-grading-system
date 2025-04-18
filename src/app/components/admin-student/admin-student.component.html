@@ -1,0 +1,15 @@
+<div class="w-full h-[100%] p-[1rem]">
+  <div routerLink="../" class="font-mono cursor-pointer">← Back</div>
+  <button
+    (click)="showAddStudentModal = true"
+    class="px-[1.5rem] py-[0.75rem] text-[1rem] font-medium bg-white border border-[#DADCE0] rounded-[0.5rem] text-[#1A73E8] cursor-pointer mt-[1rem]"
+  >
+    Add Student
+  </button>
+
+  <app-add-student-modal
+    *ngIf="showAddStudentModal"
+    (cancelAddStudent)="showAddStudentModal = false"
+    (studentAdded)="handleStudentAdded()"
+  ></app-add-student-modal>
+</div>
