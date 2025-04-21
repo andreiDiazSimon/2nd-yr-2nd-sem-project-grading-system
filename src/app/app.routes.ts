@@ -4,6 +4,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminSectionComponent } from './components/admin-section/admin-section.component';
 import { AdminStudentComponent } from './components/admin-student/admin-student.component';
+import { AdminTeacherComponent } from './components/admin-teacher/admin-teacher.component';
 
 import { Routes } from '@angular/router';
 
@@ -38,6 +39,10 @@ export const routes: Routes = [
       {
         path: 'student',
         component: AdminStudentComponent,
+      },
+      {
+        path: 'teacher',
+        component: AdminTeacherComponent
       },
     ],
   },

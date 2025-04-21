@@ -36,12 +36,13 @@ export class SignInComponent {
       console.log('Form Submitted!', this.form.value);
       let apiUrl = 'http://localhost:5085/api/signin';
       let payload = this.form.value;
-        let options = {
+      let options = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
       };
-      this.http.post(apiUrl, payload, options).subscribe({
+     this.http.post(apiUrl, payload, options)
+      .subscribe({
         next: (response) => {
           console.log('Success:', response);
           this.router.navigate(['/admin']);

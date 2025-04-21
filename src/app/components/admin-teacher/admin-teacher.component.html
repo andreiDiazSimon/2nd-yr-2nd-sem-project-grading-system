@@ -1,0 +1,27 @@
+<div class="p-[1rem]">
+  <div routerLink="../" class="font-mono cursor-pointer">← Back</div>
+
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4">Teacher List</h2>
+
+    <div *ngIf="teachers.length === 0">No teachers found.</div>
+
+    <div
+      *ngIf="teachers.length > 0"
+      class="grid grid-cols-3 font-semibold p-4 bg-gray-100 border border-gray-300 rounded-t-lg"
+    >
+      <div>ID</div>
+      <div>Username</div>
+      <div>Subject</div>
+    </div>
+
+    <div
+      *ngFor="let teacher of teachers"
+      class="grid grid-cols-3 p-4 border-b border-gray-200 bg-white"
+    >
+      <div>{{ teacher.id }}</div>
+      <div>{{ teacher.username }}</div>
+      <div>{{ teacher.subject }}</div>
+    </div>
+  </div>
+</div>
