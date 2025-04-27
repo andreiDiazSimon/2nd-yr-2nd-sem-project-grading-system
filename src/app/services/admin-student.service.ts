@@ -4,21 +4,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class AdminStudentService {
   constructor(private http: HttpClient) {}
 
+  private url = 'http://localhost:5085/api/admin/student';
+
   getAllStudents(): Observable<Student[]> {
-    let url = 'http://localhost:5085/api/admin/student/get-all-student';
+    let url = `${this.url}/get-all-student`;
     return this.http.get<Student[]>(url);
   }
 
-removeStudent(studentId: number) {
-  return this.http.post('http://localhost:5085/api/admin/student/admin-remove-student', {
-    id: studentId,
-  });
-}
+  removeStudent(studentId: number) {
+    let url = `${this.url}/admin-remove-student`;
+    return this.http.post(url, {
+      id: studentId,
+    });
+  }
 }

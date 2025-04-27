@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AddStudentModalComponent } from '../../modals/add-student-modal/add-student-modal.component';
 import { Student } from '../../Interfaces/admin-student.interface';
-import {
-  AdminStudentService,
-} from '../../services/admin-student.service';
+import { AdminStudentService } from '../../services/admin-student.service';
 
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -26,25 +24,25 @@ export class AdminStudentComponent implements OnInit {
 
   handleStudentAdded() {
     this.showAddStudentModal = false;
-    this.loadStudents()
+    this.loadStudents();
   }
 
-removeStudent(studentId: number) {
-  this.adminStudentService.removeStudent(studentId).subscribe({
-    next: (response) => {
-      console.log(response)
-      this.loadStudents();
-    },
-    error: (err) => {
-      console.error(err);
-    },
-  });
-}
+  removeStudent(studentId: number) {
+    this.adminStudentService.removeStudent(studentId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.loadStudents();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 
   loadStudents() {
     this.adminStudentService.getAllStudents().subscribe({
       next: (data) => {
-        console.log(data)
+        console.log(data);
         this.students = data;
       },
       error: (err) => {

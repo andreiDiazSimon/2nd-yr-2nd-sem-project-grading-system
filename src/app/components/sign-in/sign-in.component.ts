@@ -1,3 +1,6 @@
+import { SignInResponse } from '../../Interfaces/sign-in-response.interface';
+import { SignInService } from '../../services/sign-in.service';
+
 import { Component } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -5,8 +8,7 @@ import {
   Validators,
   FormGroup,
 } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,8 +21,7 @@ export class SignInComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
+    private SignInService: SignInService,
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -41,14 +42,7 @@ export class SignInComponent {
           'Content-Type': 'application/json',
         }),
       };
-     this.http.post(apiUrl, payload, options)
-      .subscribe({
-        next: (response) => {
-          console.log('Success:', response);
-          this.router.navigate(['/admin']);
-        },
-        error: (err) => console.error('Error', err),
-      });
+      this.SignInService.signIn(apiUrl, payload, options);
     }
   }
 }

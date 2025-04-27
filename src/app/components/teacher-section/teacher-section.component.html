@@ -1,0 +1,19 @@
+<div class="p-4">
+  <button
+    routerLink="/teacher"
+    class="cursor-pointer mb-4 text-sm text-gray-600"
+  >
+    ← Back
+  </button>
+  <h1 class="text-xl mb-4">Pick a Section</h1>
+  <ul>
+    <li *ngFor="let section of sections" class="mb-2">
+      <button
+        (click)="go(section)"
+        class="cursor-pointer text-blue-600 hover:underline"
+      >
+        {{ section }}
+      </button>
+    </li>
+  </ul>
+</div>

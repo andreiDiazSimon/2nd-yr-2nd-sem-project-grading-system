@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminTeacherComponent } from './admin-teacher.component';
+import { TeacherNavbarComponent } from './teacher-navbar.component';
 
-describe('AdminTeacherComponent', () => {
-  let component: AdminTeacherComponent;
-  let fixture: ComponentFixture<AdminTeacherComponent>;
+describe('TeacherNavbarComponent', () => {
+  let component: TeacherNavbarComponent;
+  let fixture: ComponentFixture<TeacherNavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminTeacherComponent],
+      imports: [TeacherNavbarComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AdminTeacherComponent);
+    fixture = TestBed.createComponent(TeacherNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,24 @@
+<div class="p-[1rem]">
+  <div routerLink="/admin/section" class="font-mono cursor-pointer">← Back</div>
+  <div class="text-lg font-semibold">Students in Section: {{ section }}</div>
+
+  <div *ngIf="students.length > 0">
+    <div
+      class="grid grid-cols-3 font-semibold p-4 bg-gray-100 border border-gray-300 rounded-t-lg"
+    >
+      <div>ID</div>
+      <div>Username</div>
+      <div>Section</div>
+    </div>
+
+    <div
+      *ngFor="let student of students"
+      class="grid grid-cols-3 p-4 border-b border-gray-200 bg-white"
+    >
+      <div>{{ student.id }}</div>
+      <div>{{ student.username }}</div>
+      <div>{{ student.section }}</div>
+    </div>
+  </div>
+  <div *ngIf="students.length === 0">No students in this section.</div>
+</div>

@@ -12,27 +12,36 @@
     (studentAdded)="handleStudentAdded()"
   ></app-add-student-modal>
 
-<div class="mt-8">
-  <h2 class="text-xl font-semibold mb-4">Student List</h2>
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4">Student List</h2>
 
-  <div *ngIf="students.length === 0">No students found.</div>
+    <div *ngIf="students.length === 0">No students found.</div>
 
-  <div *ngIf="students.length > 0" class="grid grid-cols-4 font-semibold p-4 bg-gray-100 border border-gray-300 rounded-t-lg">
-    <div>ID</div>
-    <div>Username</div>
-    <div>Section</div>
-    <div>Actions</div>
-  </div>
+    <div
+      *ngIf="students.length > 0"
+      class="grid grid-cols-4 font-semibold p-4 bg-gray-100 border border-gray-300 rounded-t-lg"
+    >
+      <div>ID</div>
+      <div>Username</div>
+      <div>Section</div>
+      <div>Actions</div>
+    </div>
 
-  <div *ngFor="let student of students" class="grid grid-cols-4 p-4 border-b border-gray-200 bg-white">
-    <div>{{ student.id }}</div>
-    <div>{{ student.username }}</div>
-    <div>{{ student.section }}</div>
-    <div>
-<button (click)="removeStudent(student.id)" class="cursor-pointer text-red-500 hover:underline">
-  Remove
-</button>
+    <div
+      *ngFor="let student of students"
+      class="grid grid-cols-4 p-4 border-b border-gray-200 bg-white"
+    >
+      <div>{{ student.id }}</div>
+      <div>{{ student.username }}</div>
+      <div>{{ student.section }}</div>
+      <div>
+        <button
+          (click)="removeStudent(student.id)"
+          class="cursor-pointer text-red-500 hover:underline"
+        >
+          Remove
+        </button>
+      </div>
     </div>
   </div>
-</div>
 </div>

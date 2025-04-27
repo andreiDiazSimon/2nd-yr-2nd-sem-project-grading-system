@@ -1,3 +1,13 @@
 <div class="p-[1rem]">
   <div routerLink="../" class="font-mono cursor-pointer">← Back</div>
+  <div>Sections</div>
+
+  <div *ngFor="let section of sections">
+    <div
+      (click)="onSectionClick(section)"
+      class="cursor-pointer p-2 border-b border-gray-300"
+    >
+      {{ section }}
+    </div>
+  </div>
 </div>
