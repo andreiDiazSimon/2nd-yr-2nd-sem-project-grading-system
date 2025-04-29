@@ -1,0 +1,62 @@
+<button
+  routerLink="/student"
+  class="cursor-pointer mb-4 text-sm text-gray-600 hover:text-gray-800 transition duration-300"
+>
+  ← Back
+</button>
+
+<div class="mb-4 text-center">
+  <label for="term" class="mr-2 font-semibold">Select Term:</label>
+  <select id="term" [(ngModel)]="selectedTerm" class="p-2 border rounded">
+    <option value="Prelim">Prelim</option>
+    <option value="Midterm">Midterm</option>
+    <option value="Finals">Finals</option>
+  </select>
+</div>
+
+<div class="max-w-4xl mx-auto p-4 bg-white rounded-xl shadow">
+  <h2 class="text-xl font-bold mb-4 text-center">
+    Report Card - {{ selectedTerm }}
+  </h2>
+
+  <table class="w-full table-auto border border-gray-300">
+    <thead>
+      <tr class="bg-gray-100 text-left">
+        <th class="p-2 border">Subject</th>
+        <th class="p-2 border">Teacher</th>
+        <th class="p-2 border">Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reportCard">
+        <td class="p-2 border">{{ item.subject }}</td>
+        <td class="p-2 border">{{ item.teacherName }}</td>
+        <td class="p-2 border">
+          {{
+            selectedTerm.toLowerCase() === "prelim"
+              ? item.combinedPrelimGrade
+              : selectedTerm.toLowerCase() === "midterm"
+                ? item.combinedMidtermGrade
+                : selectedTerm.toLowerCase() === "finals"
+                  ? item.combinedFinalsGrade
+                  : "N/A"
+          }}
+          <br />
+          <span
+            [ngClass]="{
+              'text-green-500':
+                transmuteGrade(getRawGradeForSelectedTerm(item)).status ===
+                'Passed',
+              'text-red-500':
+                transmuteGrade(getRawGradeForSelectedTerm(item)).status ===
+                'Failed',
+            }"
+            class="text-sm italic"
+          >
+            ({{ transmuteGrade(getRawGradeForSelectedTerm(item)).status }})
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

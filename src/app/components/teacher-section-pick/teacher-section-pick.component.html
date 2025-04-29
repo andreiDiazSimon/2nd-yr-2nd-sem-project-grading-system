@@ -6,114 +6,123 @@
     ← Back
   </button>
 
-  <h2 class="text-[1rem] mb-4">
-    Grades for Section <span class="text-[1.5rem]">{{ section }}</span>
-  </h2>
+  <div *ngIf="students.length > 0; else noStudents">
+    <h2 class="text-xl font-semibold mb-4">
+      Students in Section: {{ section }}
+    </h2>
 
-  <label for="term" class="block mb-2 font-medium text-gray-700"
-    >Select Term:</label
-  >
-  <div class="flex space-x-2">
-    <select
-      id="term"
-      [(ngModel)]="selectedTerm"
-      class="mb-4 p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-      <option value="">-- All Terms --</option>
-      <option value="Prelim">Prelim</option>
-      <option value="Midterm">Midterm</option>
-      <option value="Finals">Finals</option>
-    </select>
-    <button
-      (click)="saveGrades()"
-      class="mb-4 p-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600"
-    >
-      Save
-    </button>
-  </div>
-
-  <div *ngIf="students.length; else none">
-    <div
-      class="grid grid-cols-12 font-bold border p-2 bg-gray-100 text-gray-700"
-    >
-      <div>ID</div>
-      <div>Username</div>
-      <div>Term</div>
-      <div>W1</div>
-      <div>W2</div>
-      <div>W3</div>
-      <div>W4</div>
-      <div>W5</div>
-      <div>Exam</div>
-      <div class="text-center">Raw Grade</div>
-      <div class="text-center">Transmuted Grade</div>
-      <div class="text-center">Average Grade</div>
+    <div class="flex items-center gap-4 mb-4">
+      <!-- Dropdown for Term Selection -->
+      <label class="block">
+        <span class="text-gray-700">Select Term:</span>
+        <select
+          [(ngModel)]="selectedTerm"
+          class="block mt-1 p-2 border border-gray-300 rounded"
+        >
+          <option value="Prelim">Prelim</option>
+          <option value="Midterm">Midterm</option>
+          <option value="Finals">Final</option>
+        </select>
+      </label>
     </div>
 
-    <ng-container *ngFor="let stu of students">
-      <ng-container *ngFor="let g of stu.grades">
+    <!-- Grid Header -->
+    <div class="grid grid-cols-11 font-bold border-b pb-2 mb-2">
+      <div>Student ID</div>
+      <div>Username</div>
+      <div>Term</div>
+      <div>Week 1</div>
+      <div>Week 2</div>
+      <div>Week 3</div>
+      <div>Week 4</div>
+      <div>Week 5</div>
+      <div>Exam</div>
+      <div>Action</div>
+      <div>General Average</div>
+    </div>
+
+    <!-- Grid Rows for Students -->
+    <ng-container *ngFor="let student of students">
+      <ng-container *ngFor="let grade of student.grades">
         <div
-          *ngIf="!selectedTerm || g.term === selectedTerm"
-          class="grid grid-cols-12 items-center p-2 border-b border-gray-200"
+          class="grid grid-cols-11 border-b py-2 text-sm"
+          *ngIf="grade.term === selectedTerm"
         >
-          <div>{{ stu.id }}</div>
-          <div>{{ stu.username }}</div>
-          <div>{{ g.term }}</div>
+          <div class="text-center">{{ student.id }}</div>
+          <div class="text-center">{{ student.username }}</div>
+          <div>{{ grade.term }}</div>
 
+          <!-- Week 1 Grade Input -->
           <div>
             <input
+              [(ngModel)]="grade.week1"
               type="number"
-              [(ngModel)]="g.week1"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              [(ngModel)]="g.week2"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              [(ngModel)]="g.week3"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              [(ngModel)]="g.week4"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              [(ngModel)]="g.week5"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              [(ngModel)]="g.exam"
-              class="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-[60%]"
+              class="w-16 px-2 py-1 border rounded"
             />
           </div>
 
-          <div class="text-center">{{ calculateRawGrade(g) }}</div>
-          <div class="text-center">
-            {{ calculateTransmutedGrade(calculateRawGrade(g)) }}
+          <!-- Week 2 Grade -->
+          <div>
+            <input
+              [(ngModel)]="grade.week2"
+              type="number"
+              class="w-16 px-2 py-1 border rounded"
+            />
           </div>
-          <div class="text-center">{{ calculateAverage(g) }}</div>
+
+          <!-- Week 3 Grade -->
+          <div>
+            <input
+              [(ngModel)]="grade.week3"
+              type="number"
+              class="w-16 px-2 py-1 border rounded"
+            />
+          </div>
+
+          <!-- Week 4 Grade -->
+          <div>
+            <input
+              [(ngModel)]="grade.week4"
+              type="number"
+              class="w-16 px-2 py-1 border rounded"
+            />
+          </div>
+
+          <!-- Week 5 Grade -->
+          <div>
+            <input
+              [(ngModel)]="grade.week5"
+              type="number"
+              class="w-16 px-2 py-1 border rounded"
+            />
+          </div>
+
+          <!-- Exam Grade -->
+          <div>
+            <input
+              [(ngModel)]="grade.exam"
+              type="number"
+              class="w-16 px-2 py-1 border rounded"
+            />
+          </div>
+
+          <div>
+            <input
+              type="button"
+              value="Save"
+              (click)="updateGrade(student.id, grade)"
+              class="cursor-pointer bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+            />
+          </div>
+
+          <!-- Display Raw Grade -->
+          <div>{{ calculateRawGrade(grade) }}</div>
         </div>
       </ng-container>
     </ng-container>
   </div>
 
-  <ng-template #none>
-    <p class="text-gray-600">No students/grades for this section.</p>
+  <ng-template #noStudents>
+    <p>No students found for this section.</p>
   </ng-template>
 </div>

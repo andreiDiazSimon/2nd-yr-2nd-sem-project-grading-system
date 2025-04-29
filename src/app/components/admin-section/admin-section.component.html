@@ -1,13 +1,22 @@
-<div class="p-[1rem]">
-  <div routerLink="../" class="font-mono cursor-pointer">← Back</div>
-  <div>Sections</div>
+<div class="p-6">
+  <!-- Back Button -->
+  <div
+    routerLink="../"
+    class="text-blue-500 hover:text-blue-700 font-mono cursor-pointer mb-4"
+  >
+    ← Back
+  </div>
 
+  <!-- Section Title -->
+  <div class="text-2xl font-semibold mb-4">Sections</div>
+
+  <!-- Section List -->
   <div *ngFor="let section of sections">
     <div
       (click)="onSectionClick(section)"
-      class="cursor-pointer p-2 border-b border-gray-300"
+      class="cursor-pointer p-4 border border-gray-300 rounded-lg mb-3 shadow-md hover:bg-gray-100 transition duration-300"
     >
-      {{ section }}
+      <div class="font-medium text-lg">{{ section }}</div>
     </div>
   </div>
 </div>

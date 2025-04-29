@@ -9,15 +9,13 @@ export class TeacherService {
 
   constructor(private http: HttpClient) {}
 
-  getSections(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.api}sections`);
+  getAllSections(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.api}get-all-sections`);
   }
 
-  getGrades(section: string): Observable<StudentGrades[]> {
-    return this.http.get<StudentGrades[]>(`${this.api}grades/${section}`);
-  }
-
-  saveGrades(payload: any) {
-    return this.http.post(`${this.api}save-grades`, payload);
+  getStudentsAndGradesBySectionAndTeacher(section: string, teacherId: number) {
+    return this.http.get<StudentGrades[]>(
+      `${this.api}grades/section/${section}/teacher/${teacherId}`,
+    );
   }
 }

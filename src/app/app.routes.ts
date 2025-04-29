@@ -14,6 +14,7 @@ import { AdminSectionPickComponent } from './components/admin-section-pick/admin
 import { Routes } from '@angular/router';
 import { TeacherSectionPickComponent } from './components/teacher-section-pick/teacher-section-pick.component';
 import { TeacherSectionComponent } from './components/teacher-section/teacher-section.component';
+import { StudentViewGradeComponent } from './components/student-view-grade/student-view-grade.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,10 @@ export const routes: Routes = [
       {
         path: '',
         component: StudentComponent,
+      },
+      {
+        path: 'view-grade',
+        component: StudentViewGradeComponent,
       },
     ],
   },

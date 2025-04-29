@@ -17,8 +17,9 @@ export class TeacherSectionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.svc.getSections().subscribe({
+    this.svc.getAllSections().subscribe({
       next: (response) => {
+        console.log('all sections: ', response);
         this.sections = response;
       },
       error: (error) => {

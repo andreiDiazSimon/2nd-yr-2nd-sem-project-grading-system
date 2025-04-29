@@ -1,1 +1,14 @@
-<p>student works!</p>
+<div class="p-[1rem]">
+  <div class="text-[2rem] font-bold text-[#222222] mb-[1rem]">
+    Hello, {{ username || "Student" }}!
+  </div>
+  <div
+    class="w-72 p-6 bg-white rounded-lg shadow-md cursor-pointer transform transition-all duration-300 hover:scale-105"
+    (click)="goToViewGrade()"
+  >
+    <div class="">
+      <h3 class="text-xl font-semibold text-gray-800">View Grades</h3>
+      <p class="text-gray-600 mt-2">Click to view your grades.</p>
+    </div>
+  </div>
+</div>
