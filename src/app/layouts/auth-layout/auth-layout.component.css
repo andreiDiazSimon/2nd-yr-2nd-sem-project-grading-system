@@ -1,0 +1,5 @@
+.my-background {
+  background: url("/images/auth-bg-img.jpg");
+  background-size: cover;
+  background-position: center;
+}
